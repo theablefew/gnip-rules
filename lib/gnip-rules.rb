@@ -55,7 +55,7 @@ module Gnip
               username: omg@omg.com 
               password: larl! 
               account: larloperator
-              streaming_url: 'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod.json'
+              streaming_url: 'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod/'
 
         RUBY
         )
