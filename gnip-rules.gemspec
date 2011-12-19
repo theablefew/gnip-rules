@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "gnip-rules"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Spencer Markowski", "The Able Few"]
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "gnip-rules.gemspec",
     "lib/gnip-rules.rb",
     "test/helper.rb",
     "test/test_gnip-rules.rb",
