@@ -4,7 +4,9 @@ Provides a quick and easy way to manage your rules via Gnip Rules API.
 
 == Installation
 
-`gem 'gnip-rules'`
+```ruby
+ gem 'gnip-rules'
+```
 
 == Configuration
 
@@ -13,57 +15,59 @@ There are two ways you can provide credentials to the gnip-api gem.
 * Directly to Gnip::Rules.new( "chieflarl@larlbang.com", "larl!operator" ,'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod' )
 * Via a configuration file at config/gnip.yml 
 
-`
+```ruby
  development: &development
-  username: chieflarl@larlbang.com
-  password: larl!operator 
-  streaming_url:'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod'
-`
+   username: chieflarl@larlbang.com
+   password: larl!operator 
+   streaming_url:'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod'
+```
 
 == Usage
 
-`
-  @gnip_rules = Gnip::Rules.new
-`
+```ruby
+ @gnip_rules = Gnip::Rules.new
+```
 
 === Adding
 
-`
+```ruby
   rules = [Gnip::Rule.new "larl -bang", Gnip::Rule.new "#larloperator", Gnip::Rule.new "larlygag" , "some_tag"]
   response = @gnip_rules.add( rules )
   p response #=> 201 Created
-`
+```
 
 === Removing
 
-`
+```ruby
   rules = [Gnip::Rule.new "larl -bang", Gnip::Rule.new "#larloperator"]
   response = @gnip_rules.remove( rules )
   p response #=> 200 OK
-`
+```
 
 === Listing
 
-`
+```ruby
   response = @gnip_rules.list
   p response #=> {"rules": {"value":"larl -bang", "value":"#larloperator"} }
-`
+```
 
 === Removing All Rules
 
 This is really just for convienience while testing. You probably shouldn't ever use this in production.
 
-`
+```ruby
   response = @gnip_rules.delete_all!
   p response #=> 200 OK
   @gnip.list["rules"].empty? #=> true
-`
+```
 
 == Running Tests
 
 Make sure you have the config file mentioned above at config/gnip.yml
 
-`rake test`
+```ruby
+ rake test
+```
 
 == Contributing to gnip-rules
  
@@ -79,4 +83,5 @@ Make sure you have the config file mentioned above at config/gnip.yml
 
 Copyright (c) 2011 The Able Few. See LICENSE.txt for
 further details.
+
 
