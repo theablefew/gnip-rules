@@ -46,7 +46,6 @@ module Gnip
     def load_credentials!
       if File.exists?( 'config/gnip.yml' )
          @config = YAML.load_file( "config/gnip.yml" )[environment.to_s]
-         puts "c: #{@config}"
       else
         raise Exception.new( <<-RUBY
           You must provide a configuration file at config/gnip.yml
@@ -79,17 +78,34 @@ module Gnip
   end
 
   class Rule
-    attr_accessor :value, :tag 
+    attr_accessor :value, :tag, :errors
 
     def initialize( v , t = nil )
       @value = v
       @tag = t
+      @errors = []
     end
     
     def to_json
       o = {"value" => value}
       o.merge!( "tag" => tag ) unless tag.nil?
       JSON.generate( o )
+    end
+
+    def valid?
+      valid = validate_phrase_count
+      raise "Invalid rule #{self.errors.join('\n')}" unless valid
+    end
+
+    private
+
+    def validate_phrase_count
+     phrases = @value.scan( /(\"[\w\-\s]+\"|\w+\s?)/ ).count
+     if phrases > 10
+       @errors << "Too many clauses in phrase - #{phrases}.  The maximum allowed is 10"
+       return false
+     end
+     return true
     end
 
   end

@@ -23,6 +23,19 @@ class TestRule < Test::Unit::TestCase
       end
     end
 
+    context "with more than 10 phrases" do
+      setup do
+        @rule = Gnip::Rule.new('mirror mirror clip -watch -see -project -mirror -relativity -armie -julia -lily -trailer -movie' )
+      end
+
+      should "raise an invalid length error" do
+        assert_raise RuntimeError do 
+          @rule.valid?
+        end
+
+      end
+    end
+
     context "with tags" do
       setup do
         @rule = Gnip::Rule.new( "gorgon" , "scary" )
