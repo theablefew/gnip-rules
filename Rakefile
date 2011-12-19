@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "gnip-rules"
   gem.homepage = "http://github.com/esmarkowski/gnip-rules"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A simple wrapper for the Gnip Rules API}
+  gem.description = %Q{Remove, Add and List your Gnip Rules}
   gem.email = "spencer@theablefew.com"
-  gem.authors = ["Spencer Markowski"]
+  gem.authors = ["Spencer Markowski", "The Able Few"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
