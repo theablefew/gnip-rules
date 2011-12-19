@@ -12,7 +12,10 @@ Provides a quick and easy way to manage your rules via Gnip Rules API.
 
 There are two ways you can provide credentials to the gnip-api gem. 
 
-* Provide the values to `Gnip::Rules.new( "chieflarl@larlbang.com", "larl!operator" ,'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod' )`
+* Pass them to the initialize method
+
+  `Gnip::Rules.new( "chieflarl@larlbang.com", "larl!operator" ,'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod' )`
+
 * Via a configuration file at config/gnip.yml 
 
 ```yaml
