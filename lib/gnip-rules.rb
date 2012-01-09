@@ -94,7 +94,7 @@ module Gnip
 
     def valid?
       valid = validate_phrase_count
-      raise "Invalid rule #{self.errors.join('\n')}" unless valid
+      # raise "Invalid rule #{self.errors.join('\n')}" unless valid
     end
 
     private
