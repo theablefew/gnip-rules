@@ -29,10 +29,7 @@ class TestRule < Test::Unit::TestCase
       end
 
       should "raise an invalid length error" do
-        assert_raise RuntimeError do 
-          @rule.valid?
-        end
-
+        assert{ !@rule.valid? }
       end
     end
 

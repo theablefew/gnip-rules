@@ -86,10 +86,16 @@ module Gnip
       @errors = []
     end
     
-    def to_json
+    # def to_json
+    #   o = {"value" => value}
+    #   o.merge!( "tag" => tag ) unless tag.nil?
+    #   JSON.generate( o )
+    # end
+
+    def as_json(options={})
       o = {"value" => value}
       o.merge!( "tag" => tag ) unless tag.nil?
-      JSON.generate( o )
+      return o
     end
 
     def valid?
