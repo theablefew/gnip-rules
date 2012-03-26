@@ -9,7 +9,8 @@ module Gnip
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
     format :json
 
-    def initialize( username = nil, password = nil, uri = nil )
+    def initialize( configuration = nil, username = nil, password = nil, uri = nil )
+      @configuration_file = configuration
       unless username && password && uri
         load_credentials!
         username = @config["username"]
@@ -44,8 +45,8 @@ module Gnip
     private
 
     def load_credentials!
-      if File.exists?( 'config/gnip.yml' )
-         @config = YAML.load_file( "config/gnip.yml" )[environment.to_s]
+      if File.exists?( @configuration_file )
+         @config = YAML.load_file( @configuration_file )[environment.to_s]
       else
         raise Exception.new( <<-RUBY
           You must provide a configuration file at config/gnip.yml
