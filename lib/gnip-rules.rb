@@ -15,7 +15,7 @@ module Gnip
         load_credentials!
         username = @config["username"]
         password = @config["password"]
-        uri = @config["streaming_url"]
+        uri = uri || @config["streaming_url"]
       end
 
       self.class.basic_auth username , password 
