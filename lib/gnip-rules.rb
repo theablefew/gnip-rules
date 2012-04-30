@@ -15,7 +15,7 @@ module Gnip
         load_credentials!
         username = @config["username"]
         password = @config["password"]
-        uri = uri || @config["streaming_url"]
+        uri = uri || @config["api_url"]
       end
 
       self.class.basic_auth username , password 
@@ -55,7 +55,7 @@ module Gnip
               username: omg@omg.com 
               password: larl! 
               account: larloperator
-              streaming_url: 'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod/'
+              api_url: 'https://api.gnip.com/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod/'
 
         RUBY
         )

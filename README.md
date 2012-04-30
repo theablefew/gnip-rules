@@ -14,7 +14,7 @@ There are two ways you can provide credentials to the gnip-api gem.
 
 * Pass them to the initialize method
 
-  `Gnip::Rules.new( "chieflarl@larlbang.com", "larl!operator" ,'https://stream.gnip.com/.../YOUR_ACCOUNT/.../prod' )`
+  `Gnip::Rules.new( "chieflarl@larlbang.com", "larl!operator" ,'https://api.gnip.com/.../YOUR_ACCOUNT/.../prod' )`
 
 * Via a configuration file at config/gnip.yml 
 
@@ -22,7 +22,7 @@ There are two ways you can provide credentials to the gnip-api gem.
  development: &development
    username: chieflarl@larlbang.com
    password: larl!operator 
-   streaming_url:'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod'
+   api_url:'https://api.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod'
 ```
 
 ## Usage
