@@ -87,4 +87,5 @@ Make sure you have the config file mentioned above at config/gnip.yml
 Copyright (c) 2011 The Able Few. See LICENSE.txt for
 further details.
 
-
+----
+The Able Few - [Indianapolis Ruby on Rails & NodeJS development](http://theablefew.com/?utm_source=GitHub&utm_medium=link&utm_campaign=gnip-rules)
