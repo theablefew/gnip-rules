@@ -2,9 +2,14 @@ require 'active_support'
 require 'httparty'
 require 'json'
 
+require 'gnip-rules/api'
+require 'gnip-rules/response'
+require 'gnip-rules/rule'
+
 module Gnip
   class Rules
     include HTTParty
+    include Gnip::API
 
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
     format :json
@@ -18,27 +23,13 @@ module Gnip
         uri = uri || @config["streaming_url"]
       end
 
-      self.class.basic_auth username , password 
+      self.class.basic_auth username , password
       self.class.base_uri uri
     end
 
-    def add(rules)
-      options = ActiveSupport::JSON.encode( {:rules => rules} )
-      puts options
-      self.class.post('/rules.json', :body => options )
-    end
-
-    def remove( rules )
-      options = ActiveSupport::JSON.encode( {:rules => rules} )
-      self.class.delete('/rules.json', :body => options )
-    end
-
-    def list
-      self.class.get( '/rules.json' )
-    end
-
     def delete_all!
-      rules = self.list["rules"]
+      rules = self.list.rules
+      sleep 3
       self.remove( rules )
     end
 
@@ -63,7 +54,6 @@ module Gnip
     end
 
     def environment
-      #Clearly there's a better way. 
       if defined?(Rails)
         Rails.env
       elsif defined?(RAILS_ENV)
@@ -73,55 +63,6 @@ module Gnip
       else
         :development
       end
-    end
-
-    # -Rules
-  end
-
-  class Rule
-    attr_accessor :value, :tag, :errors
-
-    def initialize( v , t = nil )
-      @value = v
-      @tag = t
-      @errors = []
-    end
-    
-    # def to_json
-    #   o = {"value" => value}
-    #   o.merge!( "tag" => tag ) unless tag.nil?
-    #   JSON.generate( o )
-    # end
-
-    def as_json(options={})
-      o = {"value" => value}
-      o.merge!( "tag" => tag ) unless tag.nil?
-      return o
-    end
-
-    def valid?
-      #valid = validate_phrase_count
-
-      valid = validate_length
-    end
-
-    private
-
-    def validate_length
-      if @value.length > 1024
-        @errors << "Too many characters in rule - #{@value.length}. The maximum allowed is 1024"
-        return false
-      end
-      return true
-    end
-
-    def validate_phrase_count
-     phrases = @value.scan( /(\"[\w\-\s]+\"|\w+\s?)/ ).count
-     if phrases > 10
-       @errors << "Too many clauses in phrase - #{phrases}.  The maximum allowed is 10"
-       return false
-     end
-     return true
     end
 
   end
