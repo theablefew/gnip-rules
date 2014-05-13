@@ -50,19 +50,21 @@ There are two ways you can provide credentials to the gnip-api gem.
 ### Listing
 
 ```ruby
-  response = @gnip_rules.list
+  response = @gnip_rules.list.rules
   p response #=> {"rules": {"value":"larl -bang", "value":"#larloperator"} }
 ```
 
 ### Removing All Rules
 
-This is really just for convienience while testing. You probably shouldn't ever use this in production.
+This is really just for convienience while testing. You probably shouldn't ever use this in production. This method loads all the rules from gnip and passes them to the remove method. There is a 3 second pause in between the list and delete to avoid rate limiting. 
 
 ```ruby
   response = @gnip_rules.delete_all!
   p response #=> 200 OK
-  @gnip.list["rules"].empty? #=> true
+  @gnip.list.rules.empty? #=> true
 ```
+
+
 
 ## Running Tests
 
