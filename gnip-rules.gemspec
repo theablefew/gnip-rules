@@ -5,7 +5,7 @@ require 'gnip-rules/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "gnip-rules"
-  spec.version       = Gnip::Rules::VERSION
+  spec.version       = Gnip::VERSION
   spec.authors       = ["Spencer Markowski", "The Able Few"]
   spec.email         = ["spencer@theablefew.com"]
   spec.description   = "Remove, Add and List your Gnip Rules"
