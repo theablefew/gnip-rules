@@ -44,5 +44,13 @@ module Gnip
       code == 200
     end
 
+    def success?
+      ok?
+    end
+
+    def error
+      http_party_response["error"]
+    end
+
   end
 end

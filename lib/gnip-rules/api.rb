@@ -14,5 +14,12 @@ module Gnip
     def list
       Gnip::Response.new self.class.get( '/rules.json' )
     end
+
+    def delete_all!
+      rules = self.list.rules
+      sleep 3
+      self.remove( rules )
+    end
+
   end
 end

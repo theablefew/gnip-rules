@@ -27,11 +27,6 @@ module Gnip
       self.class.base_uri uri
     end
 
-    def delete_all!
-      rules = self.list.rules
-      sleep 3
-      self.remove( rules )
-    end
 
     private
 
@@ -43,9 +38,9 @@ module Gnip
           You must provide a configuration file at config/gnip.yml
 
             development: &development
-              username: omg@omg.com 
-              password: larl! 
-              account: larloperator
+              username: omg@omg.com
+              password: your_password
+              account: your_account
               streaming_url: 'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod/'
 
         RUBY
