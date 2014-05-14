@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'active_support'
 require 'httparty'
 require 'json'
