@@ -2,8 +2,8 @@ gemspec
 source 'https://rubygems.org'
 
 gem 'httparty', '>= 0'
-gem 'rake', '>= 0'
-gem 'json', '>= 1.8.1'
+gem 'rake'
+gem 'json'
 gem 'activesupport', '>= 3.1.3'
 
 # Add dependencies to develop your gem here.
