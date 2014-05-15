@@ -28,6 +28,11 @@ module Gnip
       self.class.default_timeout timeout
     end
 
+    def default_timeout(timeout)
+      self.class.default_timeout timeout
+      self.class.default_options
+    end
+
 
     private
 
