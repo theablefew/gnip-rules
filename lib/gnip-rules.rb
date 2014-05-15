@@ -14,7 +14,7 @@ module Gnip
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
     format :json
 
-    def initialize( configuration = nil, username = nil, password = nil, uri = nil )
+    def initialize( configuration = nil, username = nil, password = nil, uri = nil, timeout = 60 )
       @configuration_file = configuration
       unless username && password && uri
         load_credentials!
@@ -25,6 +25,7 @@ module Gnip
 
       self.class.basic_auth username , password
       self.class.base_uri uri
+      self.class.default_timeout timeout
     end
 
 
