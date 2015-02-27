@@ -45,7 +45,7 @@ module Gnip
     end
 
     def success?
-      ok?
+      ok? || created?
     end
 
     def error
