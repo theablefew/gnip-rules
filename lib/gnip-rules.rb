@@ -11,7 +11,7 @@ module Gnip
     include HTTParty
     include Gnip::API
 
-    debug_output $stdout
+    #debug_output $stdout
 
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
     format :json
