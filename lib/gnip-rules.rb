@@ -11,6 +11,8 @@ module Gnip
     include HTTParty
     include Gnip::API
 
+    debug_output $stdout
+
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
     format :json
 
@@ -20,7 +22,7 @@ module Gnip
         load_credentials!
         username = @config["username"]
         password = @config["password"]
-        uri = uri || @config["streaming_url"]
+        uri = uri || @config["rules_url"]
       end
 
       self.class.basic_auth username , password
@@ -47,7 +49,8 @@ module Gnip
               username: omg@omg.com
               password: your_password
               account: your_account
-              streaming_url: 'https://stream.gnip.com:443/accounts/YOUR_ACCOUNT/publishers/twitter/streams/track/prod/'
+              streaming_url: 'https://gnip-stream.twitter.com/stream/powertrack/accounts/YOUR_ACCOUNT/publishers/twitter/Sandbox.json'
+              rules_api: 'https://gnip-api.twitter.com/rules/powertrack/accounts/YOUR_ACCOUNT/publishers/twitter/Sandbox.json'
 
         RUBY
         )

@@ -13,7 +13,7 @@ module Gnip
     end
 
     def rules
-      http_party_response["rules"]
+      http_party_response["rules"].collect { |r| Hashie::Mash.new r }
     end
 
     def created?
