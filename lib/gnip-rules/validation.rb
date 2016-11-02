@@ -3,19 +3,18 @@ require 'httparty'
 require 'json'
 
 require 'gnip-rules/api'
-require 'gnip-rules/response'
+require 'gnip-rules/validation_response'
 require 'gnip-rules/rule'
-require 'gnip-rules/validation'
+
 
 module Gnip
-  class Rules
+  class Validation
     include HTTParty
-    include Gnip::API
-
-    #debug_output $stdout
 
     headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
     format :json
+
+    #debug_output $stdout
 
     def initialize( configuration = nil, username = nil, password = nil, uri = nil, timeout = 60 )
       @configuration_file = configuration
@@ -23,7 +22,7 @@ module Gnip
         load_credentials!
         username = @config["username"]
         password = @config["password"]
-        uri = uri || @config["rules_url"]
+        uri = uri || @config["validation_url"]
       end
 
       self.class.basic_auth username , password
@@ -36,6 +35,10 @@ module Gnip
       self.class.default_options
     end
 
+    def validate(rules)
+      options = ActiveSupport::JSON.encode( {rules: rules} )
+      Gnip::ValidationResponse.new self.class.post('', body: options)
+    end
 
     private
 
@@ -52,6 +55,7 @@ module Gnip
               account: your_account
               streaming_url: 'https://gnip-stream.twitter.com/stream/powertrack/accounts/YOUR_ACCOUNT/publishers/twitter/Sandbox.json'
               rules_api: 'https://gnip-api.twitter.com/rules/powertrack/accounts/YOUR_ACCOUNT/publishers/twitter/Sandbox.json'
+              validation_url: 'https://gnip-api.twitter.com/rules/powertrack/accounts/<accountName>/<streamLabel>/validation.json'
 
         RUBY
         )
@@ -69,6 +73,5 @@ module Gnip
         :development
       end
     end
-
   end
 end

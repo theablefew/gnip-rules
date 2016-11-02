@@ -1,7 +1,7 @@
 include Forwardable
 
 module Gnip
-  class Response
+  class ValidationResponse
     extend Forwardable
 
     def_delegators :@http_party_response, :response, :request, :body, :headers, :code
@@ -12,12 +12,16 @@ module Gnip
       @http_party_response = http_party_response
     end
 
-    def rules
-      http_party_response["rules"].collect { |r| Hashie::Mash.new r }
-    end
-
     def summary
       Hashie::Mash.new http_party_response["summary"]
+    end
+
+    def total_valid
+      summary.valid
+    end
+
+    def total_invalid
+      summary.not_valid
     end
 
     def detail
@@ -59,6 +63,8 @@ module Gnip
     def error
       http_party_response["error"]
     end
+
+
 
   end
 end
