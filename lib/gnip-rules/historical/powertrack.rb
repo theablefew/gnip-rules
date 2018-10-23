@@ -58,12 +58,12 @@ module Gnip
 
       def accept(uuid)
         opts = ActiveSupport::JSON.encode( {status: 'accept'} )
-        self.class.put "#{JOB_URL_PATH}/#{uuid}", opts
+        self.class.put "#{JOB_URL_PATH}/#{uuid}", body: opts
       end
 
       def reject(uuid)
         opts = ActiveSupport::JSON.encode( {status: 'reject'} )
-        self.class.put "#{JOB_URL_PATH}/#{uuid}", opts
+        self.class.put "#{JOB_URL_PATH}/#{uuid}", body: opts
       end
 
       def get_results(uuid)
