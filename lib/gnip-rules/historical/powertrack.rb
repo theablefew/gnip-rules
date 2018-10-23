@@ -14,7 +14,7 @@ module Gnip
       headers 'Accept' => 'application/json', 'Content-Type' => 'application/json'
       format :json
 
-    debug_output $stdout
+    #debug_output $stdout
 
       JOB_URL_PATH = "/jobs"
       JOBS_URL_PATH = "/jobs"
