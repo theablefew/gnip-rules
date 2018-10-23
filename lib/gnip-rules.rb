@@ -6,6 +6,7 @@ require 'gnip-rules/api'
 require 'gnip-rules/response'
 require 'gnip-rules/rule'
 require 'gnip-rules/validation'
+require 'gnip-rules/historical/powertrack'
 
 module Gnip
   class Rules
